@@ -1,0 +1,130 @@
+.header {
+  padding: 20px 0;
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__links {
+    display: flex;
+    gap: 40px;
+    &-link {
+      @include text(700, 16px, 25.6px, #424551);
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 36px;
+
+    &-left {
+      @include text(700, 16px, 52px, #fff);
+      background-color: #f75e05;
+      padding: 0px 40px;
+      border: none;
+      border-radius: 4px;
+    }
+    &-right {
+      @include text(700, 16px, 52px, #424551);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      border: none;
+      background: transparent;
+    }
+  }
+}
+
+.burger {
+  display: none;
+  position: relative;
+  cursor: pointer;
+
+  &__line {
+    display: block;
+    height: 3px;
+    width: 40px;
+    background-color: black;
+    border-radius: 1.5px;
+
+    &::before {
+      content: '';
+      height: 3px;
+      width: 40px;
+      border-radius: 1.5px;
+      display: block;
+      background-color: black;
+      position: absolute;
+      top: 10px;
+    }
+    &::after {
+      content: '';
+      height: 3px;
+      width: 40px;
+      border-radius: 1.5px;
+      display: block;
+      background-color: black;
+      position: absolute;
+      bottom: 10px;
+    }
+  }
+
+  &__active {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    .burger__line {
+      background-color: transparent;
+
+      &::before {
+        transform: rotate(45deg);
+        top: 15px;
+      }
+      &::after {
+        transform: rotate(-45deg);
+        bottom: -15px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    &__logo {
+      margin-left: 15px;
+    }
+    &__links {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      right: 0;
+      row-gap: 15px;
+      height: 0;
+      z-index: 10;
+
+      .header__links-link {
+        font-size: 0;
+      }
+
+      &_active {
+        height: 100%;
+        background-color: orange;
+        .header__links-link {
+          font-size: 25px;
+        }
+      }
+    }
+  }
+
+  .burger {
+    z-index: 10;
+    display: block;
+    position: absolute;
+    right: 25px;
+    top: 50px;
+  }
+}
